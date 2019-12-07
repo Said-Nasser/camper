@@ -7,7 +7,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/Said-Nasser/bulletin-board.git"
+    "url": "https://github.com/Said-Nasser/camper.git"
   },
   "description": "YelpCamp v1",
   "main": "app.js",
