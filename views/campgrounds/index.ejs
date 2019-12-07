@@ -1,0 +1,48 @@
+<% include ../partials/header %>
+
+<header class="header d-flex justify-content-start align-items-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+
+                <h1 class="text-light display-4">Welcome To <br><span class="display-3 font-weight-bold"> Camper!</span></h1>
+                <p class="text-light mb-5">View our hand-picked campgrounds from all over the world</p>
+                <div class="d-flex flex-column flex-md-row justify-content-beween">
+                    <a class="btn btn-default btn-outline-light btn-lg rounded-0" href="/campgrounds/new">Add New
+                        Campground</a>
+
+                    <form action="/campgrounds" method="GET" class="form-inline mt-5 mt-md-0 ml-md-5 search" id="campground-search">
+                        <div class="input-group w-100 border-0">
+                            <input type="text" name="search" placeholder="Search Campgrounds"
+                                class="form-control p-4 border-0 rounded-0">
+                            <div class="input-group-prepend border-0">
+                                <button class="btn btn-default border-0 input-group-text"><i
+                                        class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container-fluid px-2 px-sm-4 px-md-5">
+    <div class="row">
+        <% campgrounds.forEach(function(campground){ %>
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="card mb-4 ">
+                <img class="card-img-top" src="<%= campground.image %>" alt="<%= campground.name %>">
+                <div class="card-body">
+                    <h5 class="card-title"><%= campground.name %></h5>
+                    <p class="card-text">
+                        <a href="/campgrounds/<%= campground._id %>" class="btn btn-link p-0 link">More Info</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <% }); %>
+    </div>
+</div>
+
+<% include ../partials/footer %>

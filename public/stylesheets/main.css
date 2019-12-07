@@ -1,0 +1,238 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+
+html {
+  /* height: 100%; */
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+  /* Margin bottom by footer height */
+  /* height: 100vh; */
+  padding-bottom: 100px !important;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(../images/K3mPv14.jpg);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: rgba(218, 221, 226, 0.8);
+}
+
+/*------------------------ navbar ----------------------------*/
+
+nav.navbar a.navbar-brand {
+  font-size: 2rem;
+  padding: 0;
+  margin-top: -10px;
+  font-weight: 600;
+}
+
+nav.navbar ul a {
+  text-decoration: none;
+  color: #abb0b5;
+  transition: color 0.4s;
+}
+
+nav.navbar ul a:hover {
+  color: #d5d9de;
+}
+
+/*------------------------------------------------------------*/
+
+/*------------------------ link ----------------------------*/
+
+/* .link {} */
+
+.link {
+  text-decoration: none !important;
+  position: relative;
+  color: #093d9a;
+}
+
+.link::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  border-bottom: 1px solid #3f70c7;
+  transition: width 0.4s;
+}
+
+.link:hover {
+  color: #3f70c7;
+}
+
+.link:hover::after {
+  width: 100%;
+}
+
+/*------------------------------------------------------------*/
+
+/*------------------------ card ----------------------------*/
+
+.card {
+  /* border-radius: 10%; */
+  border-top-left-radius: 10%;
+  border-top-right-radius: 10%;
+  border-bottom-left-radius: 10%;
+  border-bottom-right-radius: 50% 30%;
+  transition: box-shadow 0.3s;
+  background: rgba(213, 213, 216, 0.8);
+  border: none;
+  box-shadow: 5px 5px 10px -8px #000;
+}
+
+.card:hover {
+  box-shadow: 5px 5px 10px -8px #fff;
+}
+
+.card .card-img-top {
+  border-top-left-radius: 10%;
+  border-top-right-radius: 10%;
+}
+
+.card.show {
+  border-radius: 10px;
+}
+
+.card.show .card-img-top {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.card.show .card-body .card-header {
+  background-color: transparent;
+}
+.card.show .comments {
+  padding: 1.25rem;
+}
+
+/*---------------------------------------------------------------------*/
+/*------------------------------edit and delete---------------------------*/
+.card-body, .comment {
+  position: relative;
+}
+.edit-delete {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+/*---------------------------------------------------------------------*/
+
+/*--------------------------------   header  --------------------------*/
+
+header.header {
+  min-height: 95vh;
+}
+
+form.search .input-group {
+  background-color: transparent;
+  border-bottom: 2px solid transparent;
+  position: relative;
+}
+
+form.search .input-group::after, form.search .input-group::before {
+  content: "";
+  position: absolute;
+  /* top: 0; */
+  bottom: -2px;
+  /* right: 0; */
+  left: 0;
+  z-index: -2;
+  border-bottom: 2px solid transparent;
+  width: 100%;
+  height: 100%;
+  transition: width 0.5s;
+}
+
+form.search .input-group::after {
+  z-index: -1;
+  width: 0%;
+  border-color: rgb(0, 0, 0);
+}
+
+form.search .input-group:hover::after {
+  content: "";
+  width: 100%;
+}
+
+form.search input, form.search button {
+  background-color: rgba(232, 232, 232, 0.8) !important;
+  transition: background-color 0.3s ease-in;
+}
+
+form.search input {
+  /* color: #f5f5f5 !important; */
+  /* margin-right: -5px; */
+}
+
+form input:focus {
+  background-color: rgba(#fff, 0.8);
+  box-shadow: none !important;
+}
+
+form input:focus+.input-group-prepend {
+  background-color: rgba(#fff, 0.8);
+}
+
+/*---------------------------------------------------------------------*/
+
+/*--------------------------- new campground --------------------------*/
+
+.new-campground, .edit-campground, .new-comment, .edit-comment, .login, .register {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 2rem;
+  border-radius: 0.5rem;
+}
+
+/*---------------------------------------------------------------------*/
+
+.container .text-muted {
+  margin: 20px 0;
+}
+
+/* Thumbnail styles */
+
+/* .thumbnail img {
+    width: 100%;
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+.thumbnail .caption-full {
+    padding: 9px;
+} */
+
+/* Google Map styles */
+
+#map {
+  height: 400px;
+  width: 100%;
+  box-shadow: 5px 5px 10px -8px #000;
+  border-radius: 10px;
+}
+
+/* Campground show page delete button */
+
+.delete-form {
+  display: inline-block;
+}
+
+/* Flexbox grid fix */
+
+.flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}

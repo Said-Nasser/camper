@@ -1,0 +1,98 @@
+<% include ../partials/header %>
+<div class="container-fluid p-2 p-md-5">
+  <div class="row">
+
+    <div class="col-md-9">
+      <div class="card show">
+        <img class="card-img-top" src="<%= campground.image %>">
+        <div class="card-body pt-5">
+          <div class="card-header border-0 p-0">
+            <div class="d-flex justify-content-between">
+              <h4 class="card-title"><a><%=campground.name%></a></h4>
+              <h4 class="">$<%= campground.cost %>/night</h4>
+            </div>
+            <p>
+              <em>Submitted by: <%= campground.author.username %>, <%= moment(campground.createdAt).fromNow() %></em>
+            </p>
+          </div>
+          <p><%= campground.description %></p>
+          <% if(currentUser && campground.author.id === currentUser._id || currentUser && currentUser.isAdmin){ %>
+          <div class="edit-delete">
+            <a class="btn btn-default text-warning" href="/campgrounds/<%= campground._id %>/edit"><i
+                class="fas fa-pencil-alt"></i></a>
+            <form action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST" class="delete-form" id="delete-post-form">
+              <a class="btn btn-default text-danger" onclick="document.querySelector('#delete-post-form').submit();"><i class="far fa-trash-alt"></i></a>
+            </form>
+          </div>
+          <% } %>
+        </div>
+        <div class="comments">
+          <div class="text-right">
+            <a class="btn btn-success" href="/campgrounds/<%= campground._id %>/comments/new">Add New Comment</a>
+          </div>
+          <hr>
+          <% campground.comments.forEach(function(comment){ %>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="comment">
+                  <strong><%= comment.author.username %></strong>
+                  <em class="small"> ,<%= moment(comment.createdAt).fromNow() %></em>
+                  <div>
+                    <%= comment.text %>
+
+                    <hr>
+                  </div>
+                  <% if(currentUser && comment.author.id === currentUser._id || currentUser && currentUser.isAdmin){ %>
+                  <div class="edit-delete">
+                    <a href="/campgrounds/<%=campground._id%>/comments/<%=comment._id%>/edit"
+                      class="btn btn-default text-warning"><i class="fas fa-pencil-alt"></i></a>
+                    <form class="delete-form" id="delete-comment-form"
+                      action="/campgrounds/<%=campground._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
+                      <a class="btn btn-default text-danger" onclick="document.querySelector('#delete-comment-form').submit();"><i class="far fa-trash-alt"></i></a>
+                    </form>
+                  </div>
+                  <% } %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% }) %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div id="map"></div>
+    </div>
+  </div>
+</div>
+<script>
+  function initMap() {
+    var lat = Number("<%= campground.lat %>");
+    var lng = Number("<%= campground.lng %>");
+    var center = { lat: lat, lng: lng };
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 8,
+      center: center,
+      scrollwheel: false
+    });
+    var contentString = `
+      <strong><%= campground.name %><br />
+      <%= campground.location %></strong>
+      <p><%= campground.description %></p>
+    `
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+    var marker = new google.maps.Marker({
+      position: center,
+      map: map
+    });
+    marker.addListener('click', function () {
+      infowindow.open(map, marker);
+    });
+  }
+</script>
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3y7BaAAhs0aRpEr1A7svd_Vk3KfuhRKc&callback=initMap"></script>
+<% include ../partials/footer %>

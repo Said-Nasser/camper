@@ -1,0 +1,1 @@
+It is a Node.js application powered by MongoDB database. it lets users browse different campgrounds. The application uses the CRUD functions, allowing users to add, edit, and delete their own campgrounds, and add comments to posts.
