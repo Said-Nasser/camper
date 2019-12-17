@@ -19,14 +19,20 @@ function escapeRegex(text) {
 
 //INDEX - show all campgrounds
 router.get("/", function(req, res){
+  console.log("qqqq : ", req.query.search);
   if(req.query.search && req.xhr) {
-      const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+    const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+    // regex = regex.replace('/','').replace('gi',)
+    console.log("regex : ", regex);
       // Get all campgrounds from DB
       Campground.find({name: regex}, function(err, allCampgrounds){
          if(err){
             console.log(err);
          } else {
             res.status(200).json(allCampgrounds);
+            console.log('campgrounds :', allCampgrounds);
+            // res.redirect("/campgrounds");
+            // res.render("campgrounds/index",{campgrounds: allCampgrounds, page: 'campgrounds'});
          }
       });
   } else {

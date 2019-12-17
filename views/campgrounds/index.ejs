@@ -13,7 +13,7 @@
 
                     <form action="/campgrounds" method="GET" class="form-inline mt-5 mt-md-0 ml-md-5 search" id="campground-search">
                         <div class="input-group w-100 border-0">
-                            <input type="text" name="search" placeholder="Search Campgrounds"
+                            <input type="search" name="search" placeholder="Search Campgrounds"
                                 class="form-control p-4 border-0 rounded-0">
                             <div class="input-group-prepend border-0">
                                 <button class="btn btn-default border-0 input-group-text"><i
@@ -28,7 +28,7 @@
 </header>
 
 <div class="container-fluid px-2 px-sm-4 px-md-5">
-    <div class="row">
+    <div class="row" id="campground-grid">
         <% campgrounds.forEach(function(campground){ %>
         <div class="col-lg-3 col-md-4 col-sm-6">
             <div class="card mb-4 ">
